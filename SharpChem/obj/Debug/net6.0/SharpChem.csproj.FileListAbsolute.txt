@@ -1,0 +1,15 @@
+C:\Users\physe\Documents\Projects\SharpChem\SharpChem\bin\Debug\net6.0\SharpChem.exe
+C:\Users\physe\Documents\Projects\SharpChem\SharpChem\bin\Debug\net6.0\SharpChem.deps.json
+C:\Users\physe\Documents\Projects\SharpChem\SharpChem\bin\Debug\net6.0\SharpChem.runtimeconfig.json
+C:\Users\physe\Documents\Projects\SharpChem\SharpChem\bin\Debug\net6.0\SharpChem.dll
+C:\Users\physe\Documents\Projects\SharpChem\SharpChem\bin\Debug\net6.0\ref\SharpChem.dll
+C:\Users\physe\Documents\Projects\SharpChem\SharpChem\bin\Debug\net6.0\SharpChem.pdb
+C:\Users\physe\Documents\Projects\SharpChem\SharpChem\obj\Debug\net6.0\SharpChem.csproj.AssemblyReference.cache
+C:\Users\physe\Documents\Projects\SharpChem\SharpChem\obj\Debug\net6.0\SharpChem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\physe\Documents\Projects\SharpChem\SharpChem\obj\Debug\net6.0\SharpChem.AssemblyInfoInputs.cache
+C:\Users\physe\Documents\Projects\SharpChem\SharpChem\obj\Debug\net6.0\SharpChem.AssemblyInfo.cs
+C:\Users\physe\Documents\Projects\SharpChem\SharpChem\obj\Debug\net6.0\SharpChem.csproj.CoreCompileInputs.cache
+C:\Users\physe\Documents\Projects\SharpChem\SharpChem\obj\Debug\net6.0\SharpChem.dll
+C:\Users\physe\Documents\Projects\SharpChem\SharpChem\obj\Debug\net6.0\ref\SharpChem.dll
+C:\Users\physe\Documents\Projects\SharpChem\SharpChem\obj\Debug\net6.0\SharpChem.pdb
+C:\Users\physe\Documents\Projects\SharpChem\SharpChem\obj\Debug\net6.0\SharpChem.genruntimeconfig.cache
