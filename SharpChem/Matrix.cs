@@ -47,6 +47,22 @@ namespace SharpChem.Math
         }
 
         /// <summary>
+        /// Constructs an empty (zero-filled) square matrix with dimensions N × N. Used when one intends to use row or
+        /// column options directly to set values.
+        /// </summary>
+        /// <param name="N">The dimension to construct the matrix over</param>
+        /// <param name="fill">The desired value to insert into the matrix's cells</param>
+        public Matrix(int N, decimal fill)
+        {
+            matrix = new decimal[N, N];
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++)
+                    matrix[i, j] = fill;
+            }
+            this.Size = N;
+        }
+
+        /// <summary>
         /// Constructs an array with the data specified by <c>data</c>. Used when one already possesses square-formatted
         /// data but requires the methods of <c>Matrix</c>. Fails if <c>data</c> is not a square matrix.
         /// </summary>
@@ -80,6 +96,14 @@ namespace SharpChem.Math
             }
             else {
                 decimal[,] temp = new decimal[size, size];
+                for (int j = 0; j < size;j++) {
+                    for (int k = 0; k < size; k++) {
+                        int i = (j * size) + k;
+                        temp[j, k] = data[i];
+                    }
+                }
+                matrix = temp;
+                this.Size = size;
             }
         }
 
