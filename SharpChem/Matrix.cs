@@ -109,7 +109,116 @@ namespace SharpChem.Math
 
         #endregion
 
+        #region Accessors and Indexers
+
+        /// <summary>
+        /// Indexer which provides access to <c>Matrix</c> entries in the conventional array syntax.
+        /// </summary>
+        public decimal this[int i, int j]
+        {
+            get { return matrix[i, j]; }
+            set { matrix[i, j] = value; }
+        }
+
+        /// <summary>
+        /// Retrieves a row from the matrix.
+        /// </summary>
+        /// <param name="rowNumber">The index to retrieve</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the index is out of bounds</exception>
+        /// <returns>A decimal array corresponding to the row contents</returns>
+        public decimal[] GetRow(int rowNumber)
+        {
+            int N = matrix.GetLength(0);
+            if (rowNumber >= N)
+                throw new ArgumentOutOfRangeException(nameof(GetRow), $"Index {rowNumber} not in bounds ({N})");
+            else {
+                decimal[] row = new decimal[N];
+                for (int i = 0; i < N; i++)
+                    row[i] = matrix[rowNumber, i];
+                return row;
+            }
+        }
+
+        /// <summary>
+        /// Sets a row within the matrix equal to a supplied array.
+        /// </summary>
+        /// <param name="rowNumber">The row at which to place the array within the matrix</param>
+        /// <param name="rowValue">The array to place at the indicated row</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if row not the same size as matrix width</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the <c>rowNumber</c> not in bounds</exception>
+        public void SetRow(int rowNumber, decimal[] rowValue)
+        {
+            int N = matrix.GetLength(0);
+            if (rowValue.Length != N || rowNumber >= N) {
+                if (rowValue.Length != N)
+                    throw new ArgumentOutOfRangeException(nameof(rowValue), $"Row not equal to matrix size");
+                else
+                    throw new ArgumentOutOfRangeException(nameof(SetRow), $"Index {rowNumber} not in bounds ({N})");
+            }
+            else {
+                for (int i = 0; i < N; i++)
+                    matrix[rowNumber, i] = rowValue[i];
+            }
+        }
+
+        /// <summary>
+        /// Retrieves a column from the matrix.
+        /// </summary>
+        /// <param name="colNumber">The index to retrieve</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the index is out of bounds</exception>
+        /// <returns>A decimal array corresponding to the column contents</returns>
+        public decimal[] GetColumn(int colNumber)
+        {
+            int N = matrix.GetLength(0);
+            if (colNumber >= N)
+                throw new ArgumentOutOfRangeException(nameof(GetColumn), $"Index {colNumber} not in bounds ({N})");
+            else {
+                decimal[] column = new decimal[N];
+                for (int i = 0; i < N; i++)
+                    column[i] = matrix[i, colNumber];
+                return column;
+            }
+        }
+
+        /// <summary>
+        /// Sets a column within the matrix equal to a supplied array.
+        /// </summary>
+        /// <param name="colNumber">The column at which to place the array within the matrix</param>
+        /// <param name="colValue">The array to place at the indicated column</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if column not the same size as matrix width</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the <c>colNumber</c> not in bounds</exception>
+        public void SetColumn(int colNumber, decimal[] colValue)
+        {
+            int N = matrix.GetLength(0);
+            if (colValue.Length != N || colNumber >= N) {
+                if (colValue.Length != N)
+                    throw new ArgumentOutOfRangeException(nameof(colValue), $"Row not equal to matrix size");
+                else
+                    throw new ArgumentOutOfRangeException(nameof(SetColumn), $"Index {colNumber} not in bounds ({N})");
+            }
+            else {
+                for (int i = 0; i < N; i++)
+                    matrix[i, colNumber] = colValue[i];
+            }
+        }
+
+        #endregion
+
         #region Product Operations
+
+        public Matrix Hadamard(Matrix rhs)
+        {
+            if (rhs.Size != this.Size)
+                throw new ArgumentOutOfRangeException($"Matrix dimensions ({this.Size},{rhs.Size}) incompatible");
+            else {
+                Matrix output = new Matrix(N: this.Size);
+                for (int i = 0; i < this.Size; i++) {
+                    for (int j = 0; j < this.Size; j++)
+                        output[i, j] = matrix[i, j] * rhs[i, j];
+                }
+                return output;
+            }
+        }
 
         #endregion 
     }
