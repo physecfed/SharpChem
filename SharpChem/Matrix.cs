@@ -310,7 +310,7 @@ namespace SharpChem.Math
 
         #endregion
 
-        #region Product Operations
+        #region Additional Product Operations
 
         public Matrix Hadamard(Matrix rhs)
         {
@@ -324,6 +324,35 @@ namespace SharpChem.Math
                 }
                 return output;
             }
+        }
+
+        public Matrix Kronecker(Matrix rhs)
+        { 
+            // Blah        
+        }
+
+        #endregion
+
+        #region Properties
+
+        public bool IsInvertible()
+        {
+
+        }
+
+        public bool IsIdentity()
+        {
+
+        }
+
+        public bool IsUpperTriangular()
+        {
+
+        }
+
+        public bool IsLowerTriangular()
+        {
+
         }
 
         #endregion 
