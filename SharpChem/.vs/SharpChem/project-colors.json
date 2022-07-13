@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "29bc3b7b-2f00-4bd4-a577-c009a057ef69": {
+      "ProjectGuid": "29bc3b7b-2f00-4bd4-a577-c009a057ef69",
+      "DisplayName": "SharpChem",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

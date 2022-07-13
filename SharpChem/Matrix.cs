@@ -204,6 +204,112 @@ namespace SharpChem.Math
 
         #endregion
 
+        #region Operator Overloads and Class Methods
+
+        /// <summary>
+        /// Constructs an identity matrix with dimension N.
+        /// </summary>
+        /// <param name="N">The dimension of the matrix</param>
+        /// <returns>An identity matrix with dimension N</returns>
+        public static Matrix Identity(int N)
+        {
+            Matrix identity = new Matrix(N);
+            for (int i = 0; i < N; i++)
+                identity[i, i] = 1.0m;
+            return identity;
+        }
+
+        /// <summary>
+        /// Operator overload which performs piecewise matrix addition. Fails if the two matrices are of different 
+        /// dimension.
+        /// </summary>
+        /// <param name="lhs">The left hand side of the operator</param>
+        /// <param name="rhs">The right hand side of the operator</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the two matrices differ in dimension</exception>
+        /// <returns>A matrix C = A + B</returns>
+        public static Matrix operator +(Matrix lhs, Matrix rhs)
+        {
+            if (lhs.Size != rhs.Size) {
+                int L = lhs.Size, R = rhs.Size;
+                throw new ArgumentOutOfRangeException(nameof(lhs), $"Matrix dimensions unequal ({L}, {R})");
+            }
+            else {
+                Matrix outputMatrix = new Matrix(lhs.Size);
+                for (int i = 0; i < lhs.Size; i++) {
+                    for (int j = 0; j < lhs.Size; j++)
+                        outputMatrix[i, j] = lhs[i, j] + lhs[i, j];
+                }
+                return outputMatrix;
+            }
+        }
+
+        /// <summary>
+        /// Operator overload which performs piecewise matrix subtraction. Fails if the two matrices are of different 
+        /// dimension.
+        /// </summary>
+        /// <param name="lhs">The left hand side of the operator</param>
+        /// <param name="rhs">The right hand side of the operator</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the two matrices differ in dimension</exception>
+        /// <returns>A matrix C = A - B</returns>
+        public static Matrix operator -(Matrix lhs, Matrix rhs)
+        {
+            if (lhs.Size != rhs.Size) {
+                int L = lhs.Size, R = rhs.Size;
+                throw new ArgumentOutOfRangeException(nameof(lhs), $"Matrix dimensions unequal ({L}, {R})");
+            }
+            else {
+                Matrix outputMatrix = new Matrix(lhs.Size);
+                for (int i = 0; i < lhs.Size; i++) {
+                    for (int j = 0; j < lhs.Size; j++)
+                        outputMatrix[i, j] = lhs[i, j] - lhs[i, j];
+                }
+                return outputMatrix;
+            }
+        }
+
+        /// <summary>
+        /// Operator overload which performs scalar multiplication.
+        /// </summary>
+        /// <param name="lhs">The scalar to multiply by</param>
+        /// <param name="rhs">The matrix to be multiplied</param>
+        /// <returns>A matrix B = k * A</returns>
+        public static Matrix operator *(decimal lhs, Matrix rhs)
+        {
+            Matrix outputMatrix = new Matrix(rhs.Size);
+            for (int i = 0; i < rhs.Size; i++) {
+                for (int j = 0; j < rhs.Size; j++)
+                    outputMatrix[i, j] = lhs * rhs[i, j];
+            }
+            return outputMatrix;
+        }
+
+        /// <summary>
+        /// Performs matrix multiplication of two square matrices. Fails if matrix dimensions are not equal.
+        /// </summary>
+        /// <param name="lhs">The left-hand matrix</param>
+        /// <param name="rhs">The right-hand matrix</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the two matrices differ in dimension</exception>
+        /// <returns>A matrix C = A * B</returns>
+        public static Matrix operator *(Matrix lhs, Matrix rhs)
+        {
+            if (lhs.Size != rhs.Size) {
+                int L = lhs.Size, R = rhs.Size;
+                throw new ArgumentOutOfRangeException(nameof(lhs), $"Matrix dimensions unequal ({L}, {R})");
+            }
+            else {
+                Matrix outputMatrix = new Matrix(lhs.Size);
+                for (int i = 0; i < lhs.Size; i++) {
+                    for (int j = 0; j < lhs.Size; j++) {
+                        for (int k = 0; k < lhs.Size; k++)
+                            outputMatrix[i, j] += (lhs[i, k] * rhs[k, j]);
+                    }
+                }
+                return outputMatrix;
+            }
+        }
+
+        #endregion
+
         #region Product Operations
 
         public Matrix Hadamard(Matrix rhs)
