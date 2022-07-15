@@ -308,6 +308,36 @@ namespace SharpChem.Math
             }
         }
 
+        public static bool operator ==(Matrix lhs, Matrix rhs)
+        {
+            if (lhs.Size != rhs.Size)
+                return false;
+            else {
+                for (int i = 0; i <= lhs.Size; i++) {
+                    for (int j = 0; j < lhs.Size; j++) {
+                        if (lhs[i, j] != rhs[i, j])
+                            return false;
+                    }
+                }
+                return true;
+            }
+        }
+
+        public static bool operator !=(Matrix lhs, Matrix rhs)
+        {
+            if (rhs.Size != lhs.Size)
+                return true;
+            else {
+                for (int i = 0; i <= lhs.Size; i++) {
+                    for (int j = 0; j < lhs.Size; j++) {
+                        if (lhs[i, j] != rhs[i, j])
+                            return true;
+                    }
+                }
+                return false;
+            }
+        }
+
         #endregion
 
         #region Additional Product Operations
@@ -345,6 +375,11 @@ namespace SharpChem.Math
 
         }
 
+        public bool IsDiagonal()
+        {
+
+        }
+
         public bool IsUpperTriangular()
         {
 
@@ -356,5 +391,20 @@ namespace SharpChem.Math
         }
 
         #endregion 
+
+        #region Solution Methods
+
+        private int Argmax(int start, int stop, int currentColumn)
+        {
+            int j = currentColumn;
+            Dictionary<int, decimal> values = new Dictionary<int, decimal>();
+            for (int i = start; i <= stop; i++) {
+                decimal valueToInsert = System.Math.Abs(this[i, j]);
+                values.Add(i, valueToInsert);
+            }
+            return values.Aggregate((a, b) => a.Value > b.Value ? a : b).Key;
+        }
+
+        #endregion
     }
 }
